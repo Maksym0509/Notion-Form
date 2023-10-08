@@ -12,7 +12,6 @@ const RightSideContent = () => {
   });
 
   const data = convertNotionToElements(tables, selectedTable);
-
   return (
     <React.Fragment>
       <Card className="mt-4" id="alerts">

@@ -73,7 +73,8 @@ const Section = () => {
                     <Col md={4}>
                       <div className="mt-3 mt-md-0 h-100">
                         <a
-                          href="https://api.notion.com/v1/oauth/authorize?client_id=e88816f4-9160-434f-9fe0-21a5ea1f30ba&response_type=code&owner=user&redirect_uri=https%3A%2F%2Fwizfill.onrender.com%2F"
+                          // href="https://api.notion.com/v1/oauth/authorize?client_id=e88816f4-9160-434f-9fe0-21a5ea1f30ba&response_type=code&owner=user&redirect_uri=https%3A%2F%2Fwizfill.onrender.com%2F"
+                          href="https://api.notion.com/v1/oauth/authorize?client_id=2b887856-1685-4fd2-a864-b704149f0f7b&response_type=code&owner=user&redirect_uri=http%3A%2F%2Flocalhost%3A3000"
                           className="btn btn-primary w-100 h-100"
                         >
                           <i className="uil uil-plus me-1"></i>New Form

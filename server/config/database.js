@@ -8,6 +8,7 @@ mongoose.set("strictQuery", false);
 const configDatabase = async () => {
   try {
     await mongoose.connect(dbURL, {
+      dbName: "WizFill",
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

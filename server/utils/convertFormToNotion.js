@@ -137,7 +137,13 @@ const convertFormToNotion = (formData) => {
           };
         }
         break;
-
+      case "hyperlink":
+        if (item.value) {
+          obj[key] = {
+            url: item.value
+        }
+      }
+        break;
       default:
         obj[key] = {
           [type]: item.value,

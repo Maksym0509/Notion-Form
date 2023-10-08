@@ -3,6 +3,10 @@
     height: calc(100vh - 165px);
 }
 
+.label-required {
+    color:black !important;
+}
+
 .builderMT {
     margin-top: 0px !important;
 }

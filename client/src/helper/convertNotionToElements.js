@@ -23,6 +23,7 @@ const convertNotionToElements = (tables, selectedTable) => {
           canHaveOptionCorrect: true,
           canHaveOptionValue: true,
           canPopulateFromApi: true,
+          label: value.name,
         };
         data.push(url);
         break;

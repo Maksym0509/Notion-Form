@@ -20,6 +20,7 @@ import { useHistory } from "react-router-dom";
 import $ from "jquery";
 import Logo from "../../assets/images/logo.png";
 import "./index.css";
+import RefreshIcon from "./icons";
 
 const Toolbar = () => {
   const history = useHistory();
@@ -63,6 +64,7 @@ const Toolbar = () => {
 
   useEffect(() => {
     if (tables) {
+      console.log(tables, "table data of notion")
       setData(convertNotionToElements(tables, selectedTable));
     }
   }, [tables]);
@@ -84,6 +86,10 @@ const Toolbar = () => {
     }, 0);
   }, []);
 
+  const onRefresh = () => {
+    window.location.reload();
+  }
+
   const toggle = () => setIsOpen(!isOpen);
   const openPreviewModal = () => setPreviewVisibility(!previewVisibility);
   const openPublishModal = () => setPublishVisibility(!publishVisibility);
@@ -91,12 +97,25 @@ const Toolbar = () => {
   const onSubmit = (formData) => {
     setIsSubmitBtnLoading(true);
 
+    let formdata = formData;
+    data.map(item => {
+      if(item.element === "HyperLink"){
+        const newItem = {
+          custom_name: "hyperlink",
+          id: item.id,
+          name: "hyperlink",
+          value: item.href
+        }
+        formdata.push(newItem)
+      }
+    })
+
     const newData = data.reduce((map, obj) => {
       map[obj.id] = obj;
       return map;
     }, {});
 
-    const promises = formData.map(async (obj) => {
+    const promises = formdata.map(async (obj) => {
       if (newData[obj.id]) {
         if (
           newData[obj.id].element === "Camera" ||
@@ -184,15 +203,27 @@ const Toolbar = () => {
                   >
                     Preview
                   </button>
+                 
                 </NavItem>{" "}
                 <NavItem>
                   <LoadingButton
                     disabled={isDisableBtn || isPublishBtnLoading}
-                    className={"btn btn-success"}
+                    className={"btn btn-success mr-5"}
                     onClick={onPublishForm}
                     isLoading={isPublishBtnLoading}
                     title={"Publish"}
                   />
+                </NavItem>
+                <NavItem>
+                  <button
+                    type="button"
+                    onClick={onRefresh}
+                    className="btn btn-warning mr-5"
+                  >
+                    {/* <i class="bi bi-arrow-clockwise"></i> */}
+                    {/* <MdRefresh /> */}
+                    <RefreshIcon />
+                  </button>
                 </NavItem>
               </>
             </ul>
